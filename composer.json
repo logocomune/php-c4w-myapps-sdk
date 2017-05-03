@@ -1,0 +1,34 @@
+{
+  "name": "logocomune/c4w-myapps-sdk",
+  "type": "library",
+  "description": "Unofficial Cloud4wi SDK for My Apps",
+  "keywords": [
+    "sdk"
+      ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alessandro Lucaferro",
+      "email": "alessandro.lucaferro@gmail.com",
+      "homepage": "https://github.com/logocomune"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "guzzlehttp/guzzle": "~6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.0",
+    "logocomune/debug": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyAppsSdk\\": "src/MyAppsSdk"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MyAppsSdk\\Tests\\": "tests/"
+    }
+  }
+}

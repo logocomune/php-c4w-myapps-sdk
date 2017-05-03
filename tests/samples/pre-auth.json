@@ -1,0 +1,30 @@
+{
+  "status": "success",
+  "data": {
+    "customer": {
+      "lang": "eng",
+      "is_logged": false
+    },
+    "hotspot": {
+      "city": "FLORENCE, Italy",
+      "id": "9067",
+      "identifier": "685112345D_main",
+      "latitude": "45.960782503827",
+      "longitude": "12.091283106750",
+      "mac_address": "685112345D",
+      "name": "MainAp",
+      "state": "Florence",
+      "tag": "hotspot",
+      "zip": "55100"
+    },
+    "tenant": {
+      "name": "Galaxy Tenant",
+      "read_only": true,
+      "tenant_id": "1001"
+    },
+    "wifiarea": {
+      "name": "Main Venue",
+      "wifiarea_id": "ae092a5b3e283c8373ke2bf18cde0005"
+    }
+  }
+}
