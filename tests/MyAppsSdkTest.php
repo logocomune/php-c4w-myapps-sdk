@@ -40,22 +40,22 @@ class MyAppsSDKTest extends PHPUnit_Framework_TestCase
         $configuration->setHttpClientConfig(['handler' => $handler]);
 
         $MyAppsSDK = new MyAppsSDK($configuration);
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
         $this->assertNotFalse($sessionData);
 
 
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
         $this->assertNotFalse($sessionData);
 
         $this->setExpectedException(\Exception::class);
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
 
         $this->assertFalse($sessionData['sessionData']);
 
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
         $this->assertFalse($sessionData['sessionData']);
 
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
         $this->assertFalse($sessionData['sessionData']);
     }
 
@@ -81,10 +81,10 @@ class MyAppsSDKTest extends PHPUnit_Framework_TestCase
         $MyAppsSDK = new MyAppsSDK($configuration);
 
         $this->setExpectedException(MyAppsSdkException::class);
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
 
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
 
-        $sessionData = $MyAppsSDK->getSessionBySK('test');
+        $sessionData = $MyAppsSDK->getContextByKey('test');
     }
 }

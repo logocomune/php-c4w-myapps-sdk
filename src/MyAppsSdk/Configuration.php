@@ -5,23 +5,23 @@ namespace MyAppsSdk;
 class Configuration implements ConfigurationInterface
 {
 
-    const DEF_API_SESSION_BASE_URL = "https://volare.cloud4wi.com";
+    const API_CONTEXT_BASE_URL = "https://volare.cloud4wi.com";
 
-    const DEF_API_SESSION_PATH_URL = '/controlpanel/1.0/bridge/sessions/';
+    const API_CONTEXT_PATH_URL = '/controlpanel/1.0/bridge/sessions/';
 
-    const DEF_PARM_SESSION_KEY = 'sk';
+    const PARM_CONTEXT_KEY = 'sk';
 
-    private $baseUrl = self::DEF_API_SESSION_BASE_URL;
+    private $baseUrl = self::API_CONTEXT_BASE_URL;
 
-    private $sessionPathUrl = self::DEF_API_SESSION_PATH_URL;
+    private $contextPathUrl = self::API_CONTEXT_PATH_URL;
 
-    private $sessionKey = self::DEF_PARM_SESSION_KEY;
+    private $contextKey = self::PARM_CONTEXT_KEY;
 
     private $httpHeaders;
 
     private $httpClientConfig = [
-        'timeout' => 2,
-        'allow_redirects' => true,
+        'timeout' => 2, //Timeout after 2 seconds
+        'allow_redirects' => true, //Follow redirects
     ];
 
 
@@ -38,20 +38,22 @@ class Configuration implements ConfigurationInterface
 
 
     /**
-     * @param null $sessionKey
+     * Get full api url wit contextKey
+     *
+     * @param null $contextKey
      * @return string
      */
-    public function getApiSessionUrl($sessionKey = null)
+    public function getApiCotnextUrl($contextKey = null)
     {
-        return $this->baseUrl . $this->getApiSessionPath($sessionKey);
+        return $this->baseUrl . $this->getApiContextPath($contextKey);
     }
 
     /**
      * @return string
      */
-    public function getSessionKey()
+    public function getContextKey()
     {
-        return $this->sessionKey;
+        return $this->contextKey;
     }
 
     /**
@@ -81,26 +83,30 @@ class Configuration implements ConfigurationInterface
     /**
      * @return string
      */
-    public function getSessionPathUrl()
+    public function getContextPathUrl()
     {
-        return $this->sessionPathUrl;
+        return $this->contextPathUrl;
     }
 
-    public function getApiSessionPath($sessionKey = null)
+    /**
+     * @param null $contextKey
+     * @return string
+     */
+    public function getApiContextPath($contextKey = null)
     {
-        $apiPath = rtrim($this->sessionPathUrl, '/');
-        if ($sessionKey !== null) {
-            $apiPath .= '/' . $sessionKey;
+        $apiPath = rtrim($this->contextPathUrl, '/');
+        if ($contextKey !== null) {
+            $apiPath .= '/' . $contextKey;
         }
         return $apiPath;
     }
 
     /**
-     * @param string $sessionPathUrl
+     * @param string $contextPathUrl
      */
-    public function setSessionPathUrl($sessionPathUrl)
+    public function setContextPathUrl($contextPathUrl)
     {
-        $this->sessionPathUrl = $sessionPathUrl;
+        $this->contextPathUrl = $contextPathUrl;
     }
 
     /**

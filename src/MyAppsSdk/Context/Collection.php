@@ -1,6 +1,6 @@
 <?php
 
-namespace MyAppsSdk\Session;
+namespace MyAppsSdk\Context;
 
 class Collection
 {
@@ -28,13 +28,6 @@ class Collection
         return $this->items;
     }
 
-    /**
-     * @param array $items
-     */
-    protected function setItems(array $items)
-    {
-        $this->items = $items;
-    }
 
     private function nameSplit($name)
     {
@@ -52,5 +45,10 @@ class Collection
         }
 
         return $items;
+    }
+
+    public function getRaw()
+    {
+        return $this->getItems();
     }
 }

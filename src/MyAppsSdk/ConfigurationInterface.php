@@ -4,9 +4,9 @@ namespace MyAppsSdk;
 
 interface ConfigurationInterface
 {
-    public function getSessionKey();
+    public function getContextKey();
 
     public function getHttpClientConfig();
 
-    public function getApiSessionPath($sessionKey);
+    public function getApiContextPath($contextKey);
 }

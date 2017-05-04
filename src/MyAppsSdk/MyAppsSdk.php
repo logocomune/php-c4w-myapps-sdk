@@ -2,11 +2,12 @@
 
 namespace MyAppsSdk;
 
+use MyAppsSdk\Context\Context;
+use MyAppsSdk\Exceptions\MyAppsHttpClientException;
 use MyAppsSdk\Exceptions\MyAppsRequestException;
 use MyAppsSdk\HttpClients\GuzzleHttpClient;
-use MyAppsSdk\Session\SessionData;
 
-class MyAppsSdk
+class MyAppsSdk implements MyAppsSdkInterface
 {
 
     private $configurations;
@@ -26,13 +27,13 @@ class MyAppsSdk
     }
 
     /**
-     * Return the session key from url params
+     * Return the context key from url params
      *
      * @return null/string
      */
-    public function getSessionKey()
+    public function getContextKey()
     {
-        $key = $this->configurations->getSessionKey();
+        $key = $this->configurations->getContextKey();
         if (isset($_GET[$key])) {
             return trim($_GET[$key]);
         }
@@ -54,37 +55,41 @@ class MyAppsSdk
     }
 
     /**
-     * @param $sessionKey
-     * @return SessionData
+     * @param $contextKey
+     * @return Context
+     * @throws MyAppsHttpClientException
      * @throws MyAppsRequestException
      */
-    public function getSessionBySK($sessionKey)
+    public function getContextByKey($contextKey)
     {
-        if ($sessionKey !== null && $sessionKey !== '') {
-            $body = GuzzleHttpClient::get($this->configurations->getApiSessionPath($sessionKey), $this->configurations->getHttpClientConfig(), $this->configurations->getHttpHeaders());
 
+        if ($contextKey !== null && $contextKey !== '') {
+            $client = new GuzzleHttpClient();
 
-            $rawSession = json_decode($this->removeBOM($body), true);
+            //@throws MyAppsHttpClientException
+            $body = $client->get($this->configurations->getApiContextPath($contextKey), $this->configurations->getHttpClientConfig(), $this->configurations->getHttpHeaders());
 
-            if (!empty($rawSession) && isset($rawSession['status']) && $rawSession['status'] === 'success') {
-                return new SessionData($rawSession);
+            $rawContext = json_decode($this->removeBOM($body), true);
+
+            if (!empty($rawContext) && isset($rawContext['status']) && $rawContext['status'] === 'success') {
+                return new Context($rawContext);
             } else {
                 $errorMsg = "Bad content";
 
                 throw new MyAppsRequestException($errorMsg);
             }
         } else {
-            throw new MyAppsRequestException("No session key");
+            throw new MyAppsRequestException("No context key");
         }
         throw new MyAppsRequestException("Unknown error");
     }
 
 
     /**
-     * @return SessionData
+     * @return Context
      */
-    public function getSession()
+    public function getContext()
     {
-        return $this->getSessionBySK($this->getSessionKey());
+        return $this->getContextByKey($this->getContextKey());
     }
 }

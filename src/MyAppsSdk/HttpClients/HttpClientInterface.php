@@ -13,5 +13,5 @@ interface HttpClientInterface
      * @return string
      * @throws MyAppsHttpClientException
      */
-    public static function get($pathUrl, $clientConfig = [], $headers = []);
+    public function get($pathUrl, $clientConfig = [], $headers = []);
 }

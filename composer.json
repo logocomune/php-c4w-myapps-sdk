@@ -1,10 +1,11 @@
 {
   "name": "logocomune/c4w-myapps-sdk",
   "type": "library",
-  "description": "Unofficial Cloud4wi SDK for My Apps",
+  "description": "Unofficial My Apps SDK",
   "keywords": [
-    "sdk"
-      ],
+    "sdk",
+    "cloud4wi"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -19,8 +20,10 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^4.0",
-    "logocomune/debug": "*",
     "squizlabs/php_codesniffer": "*"
+  },
+  "suggest": {
+    "logocomune/debug": "Debug tool"
   },
   "autoload": {
     "psr-4": {

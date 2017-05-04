@@ -1,11 +1,11 @@
 <?php
 
-namespace MyAppsSdk\Test\Session;
+namespace MyAppsSdk\Test\Context;
 
-use MyAppsSdk\Session\Tenant;
+use MyAppsSdk\Context\Company;
 use PHPUnit_Framework_TestCase;
 
-class TenantTest extends PHPUnit_Framework_TestCase
+class CompanyTest extends PHPUnit_Framework_TestCase
 {
 
     private $preAuthData;
@@ -24,28 +24,28 @@ class TenantTest extends PHPUnit_Framework_TestCase
 
     public function testId()
     {
-        $tenant = new Tenant($this->preAuthData);
+        $tenant = new Company($this->preAuthData);
         $this->assertEquals("1001", $tenant->getId());
 
-        $tenant = new Tenant($this->postAuthData);
+        $tenant = new Company($this->postAuthData);
         $this->assertEquals("1001", $tenant->getId());
     }
 
     public function testName()
     {
-        $tenant = new Tenant($this->preAuthData);
+        $tenant = new Company($this->preAuthData);
         $this->assertEquals("Galaxy Tenant", $tenant->getName());
 
-        $tenant = new Tenant($this->postAuthData);
+        $tenant = new Company($this->postAuthData);
         $this->assertEquals("Galaxy Tenant", $tenant->getName());
     }
 
     public function testIsReadOnly()
     {
-        $tenant = new Tenant($this->preAuthData);
+        $tenant = new Company($this->preAuthData);
         $this->assertTrue($tenant->isReadOnly());
 
-        $tenant = new Tenant($this->postAuthData);
+        $tenant = new Company($this->postAuthData);
         $this->assertFalse($tenant->isReadOnly());
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace MyAppsSdk\Test\Session;
+namespace MyAppsSdk\Test\Context;
 
-use MyAppsSdk\Session\Customer;
+use MyAppsSdk\Context\Customer;
 use PHPUnit_Framework_TestCase;
 
 class CustomerTest extends PHPUnit_Framework_TestCase
@@ -30,10 +30,10 @@ class CustomerTest extends PHPUnit_Framework_TestCase
     public function testIsLogged()
     {
         $customer = new Customer($this->preAuthData);
-        $this->assertEquals(false, $customer->getIsLogged());
+        $this->assertEquals(false, $customer->isLogged());
 
         $customer = new Customer($this->postAuthData);
-        $this->assertEquals(true, $customer->getIsLogged());
+        $this->assertEquals(true, $customer->isLogged());
     }
 
     public function testId()
@@ -78,7 +78,28 @@ class CustomerTest extends PHPUnit_Framework_TestCase
         $this->assertNull($customer->getGender());
 
         $customer = new Customer($this->postAuthData);
-        $this->assertEquals("M", $customer->getGender());
+        $this->assertEquals(Customer::GENDER_MALE, $customer->getGender());
+
+        $customer = new Customer(['gender'=>'male']);
+        $this->assertEquals(Customer::GENDER_MALE, $customer->getGender());
+
+        $customer = new Customer(['gender'=>'Maschio']);
+        $this->assertEquals(Customer::GENDER_MALE, $customer->getGender());
+
+        $customer = new Customer(['gender'=>' Maschio']);
+        $this->assertEquals(Customer::GENDER_MALE, $customer->getGender());
+
+        $customer = new Customer(['gender'=>'female']);
+        $this->assertEquals("F", $customer->getGender());
+
+        $customer = new Customer(['gender'=>'Femmina']);
+        $this->assertEquals("F", $customer->getGender());
+
+        $customer = new Customer(['gender'=>' female']);
+        $this->assertEquals("F", $customer->getGender());
+
+        $customer = new Customer(['gender'=> null]);
+        $this->assertEquals(Customer::GENDER_UNKNOWN, $customer->getGender());
     }
 
     public function testBirthDate()

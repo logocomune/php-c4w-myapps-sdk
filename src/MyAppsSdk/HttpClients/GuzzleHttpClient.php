@@ -15,7 +15,7 @@ class GuzzleHttpClient implements HttpClientInterface
      * @return string
      * @throws MyAppsHttpClientException
      */
-    public static function get($pathUrl, $clientConfig = [], $headers = [])
+    public function get($pathUrl, $clientConfig = [], $headers = [])
     {
 
         $client = new Client($clientConfig);

@@ -1,8 +1,8 @@
 <?php
 
-namespace MyAppsSdk\Test\Session;
+namespace MyAppsSdk\Test\Context;
 
-use MyAppsSdk\Session\Hotspot;
+use MyAppsSdk\Context\Hotspot;
 use PHPUnit_Framework_TestCase;
 
 class HotspotTest extends PHPUnit_Framework_TestCase
