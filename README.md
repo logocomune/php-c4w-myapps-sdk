@@ -38,9 +38,7 @@ use MyAppsSdk\MyAppsSdk;
 use MyAppsSdk\Exceptions\MyAppsSdkException;
 
 require (__DIR__.'/vendor/autoload.php');
-$configuration = new \MyAppsSdk\Configuration();
-$configuration->setBaseUrl('http://controlpaneldevelop.cloud4wi.com');
-$myAppsSdk = new MyAppsSdk($configuration);
+$myAppsSdk = new MyAppsSdk();
 
 try {
     $context = $myAppsSdk->getContext();
